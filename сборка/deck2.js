@@ -24,6 +24,7 @@ const PAL = {
   '1': { ink: '0D1F2D', paper: 'F3F6F9', ice: 'C6D8E6', coral: 'F97279', blue: '2A72A3', dim: '9FB6C8', deep: '163650', sage: 'C6D8E6', crimson: 'F97279' },
   '2': { ink: '1B1422', paper: 'F4F1F6', ice: 'E6DDEC', coral: 'F2547A', blue: '8B729C', dim: 'B5A6C2', deep: '3A2C47', sage: 'A6B8A0', crimson: 'E20942' } };
 const C = PAL[PART];
+const BGMAP = process.env.LEAF ? { 16: 'vtitle', 17: 'vedge_r', 18: 'vconv18', 19: 'vconvC', 20: 'vedge_b', 21: 'vedge_bl', 22: 'vedge_b', 23: 'vedge_bl', 24: 'vedge_b', 25: 'vedge_bl', 26: 'vedge_b', 27: 'vedge_bl', 28: 'vconv28', 29: 'vconvC', 30: 'vedge_b', refs: 'vedge_bl' } : null;
 const SANS = 'Onest', SANS_B = 'Onest SemiBold', POSTER = 'Unbounded';
 const NB = ' ';
 const W = 13.333, L = 0.8, R = W - 0.8, CW = R - L;
@@ -49,7 +50,7 @@ const dot = (s, x, y, d, color) => s.addShape(pres.shapes.OVAL, { x, y, w: d, h:
 const ring = (s, x, y, d, color, width = 1) => s.addShape(pres.shapes.OVAL, { x, y, w: d, h: d, fill: { type: 'none' }, line: { color, width } });
 function slide(bg, n, section) {
   const s = pres.addSlide({ sectionTitle: section });
-  s.background = { path: `${BG}/${bg}.png` };
+  s.background = { path: `${BG}/${(BGMAP && BGMAP[n]) || bg}.png` };
   s.addNotes(NOTES[n]);
   return s;
 }
@@ -59,7 +60,7 @@ const REF = {};
 srcBlock.split('\n').forEach(l => { const m = l.match(/^(\d+)\. (.*)$/); if (m) REF[+m[1]] = m[2].replace(/\*/g, '').replace(/\s*\[[^\]]*\]/g, '').replace(/\.\./g, '.').trim(); });
 function refSlide(ids, section) {
   const s = pres.addSlide({ sectionTitle: section });
-  s.background = { path: `${BG}/top.png` };
+  s.background = { path: `${BG}/${(BGMAP && BGMAP.refs) || 'top'}.png` };
   s.addNotes('Список источников, на которые есть ссылки в слайдах этой части. При показе не озвучивается.');
   title(s, 'Источники');
   const items = ids.map(i => REF[i]); const half = Math.ceil(items.length / 2);
