@@ -13,7 +13,7 @@ head=head.replace("for (let i = 1; i <= 30; i++) if (!NOTES[i])","for (let i = (
 head=head.replace("pres.title = 'Дизайн-мышление: недели 11–12';","pres.title = PART === '1' ? 'Дизайн-мышление в организации: внедрение и культура' : 'Команда, фасилитация и креативное пространство';")
 head=head.replace("  s.background = { path: `${BG}/${bg}.png` };", "  s.background = { path: `${BG}/${(BGMAP && BGMAP[n]) || bg}.png` };")
 head=head.replace("  s.background = { path: `${BG}/top.png` };", "  s.background = { path: `${BG}/${(BGMAP && BGMAP.refs) || 'top'}.png` };")
-head=head.replace("const C = PAL[PART];", "const C = PAL[PART];\nconst BGMAP = process.env.LEAF ? { 16: 'vtitle', 17: 'vedge_r', 18: 'vconv18', 19: 'vconvC', 20: 'vedge_b', 21: 'vedge_bl', 22: 'vedge_b', 23: 'vedge_bl', 24: 'vedge_b', 25: 'vedge_bl', 26: 'vedge_b', 27: 'vedge_bl', 28: 'vconv28', 29: 'vconvC', 30: 'vedge_b', refs: 'vedge_bl' } : null;")
+head=head.replace("const C = PAL[PART];", "const C = PAL[PART];\nconst BGMAP = process.env.LEAF ? { 16: 'vtitle', 17: 'vedge_l', 18: 'vconv18', 19: 'vconvC', 20: 'vedge_b', 21: 'vedge_bl', 22: 'vedge_b', 23: 'vedge_bl', 24: 'vedge_b', 25: 'vedge_bl', 26: 'vedge_b', 27: 'vedge_bl', 28: 'vconv28', 29: 'vconvC', 30: 'vedge_b', refs: 'vedge_bl' } : process.env.TOPO ? { 1: 'ttitle', 2: 'tedge_bl', 3: 'tpeak_r', 4: 'tpeak_r', 5: 'tpeak_c', 6: 'tedge_b', 7: 'tedge_b', 8: 'tedge_bl', 9: 'tpeak_r', 10: 'tedge_bl', 11: 'tpeak_c', 12: 'tedge_b', 13: 'tedge_bl', 14: 'tpeak_c', 15: 'tedge_b', refs: 'tedge_bl' } : null;")
 p1=open(d+'p1new.js',encoding='utf8').read()
 p1=p1.replace('//__KEEP_2__', block('// 2 — quote + photo','// 3 — silos'))
 p1=p1.replace('//__KEEP_9_10__', block('// 9 — P&G','// 11 — Nokia timeline'))

@@ -24,7 +24,7 @@ const PAL = {
   '1': { ink: '0D1F2D', paper: 'F3F6F9', ice: 'C6D8E6', coral: 'F97279', blue: '2A72A3', dim: '9FB6C8', deep: '163650', sage: 'C6D8E6', crimson: 'F97279' },
   '2': { ink: '1B1422', paper: 'F4F1F6', ice: 'E6DDEC', coral: 'F2547A', blue: '8B729C', dim: 'B5A6C2', deep: '3A2C47', sage: 'A6B8A0', crimson: 'E20942' } };
 const C = PAL[PART];
-const BGMAP = process.env.LEAF ? { 16: 'vtitle', 17: 'vedge_r', 18: 'vconv18', 19: 'vconvC', 20: 'vedge_b', 21: 'vedge_bl', 22: 'vedge_b', 23: 'vedge_bl', 24: 'vedge_b', 25: 'vedge_bl', 26: 'vedge_b', 27: 'vedge_bl', 28: 'vconv28', 29: 'vconvC', 30: 'vedge_b', refs: 'vedge_bl' } : null;
+const BGMAP = process.env.LEAF ? { 16: 'vtitle', 17: 'vedge_l', 18: 'vconv18', 19: 'vconvC', 20: 'vedge_b', 21: 'vedge_bl', 22: 'vedge_b', 23: 'vedge_bl', 24: 'vedge_b', 25: 'vedge_bl', 26: 'vedge_b', 27: 'vedge_bl', 28: 'vconv28', 29: 'vconvC', 30: 'vedge_b', refs: 'vedge_bl' } : process.env.TOPO ? { 1: 'ttitle', 2: 'tedge_bl', 3: 'tpeak_r', 4: 'tpeak_r', 5: 'tpeak_c', 6: 'tedge_b', 7: 'tedge_b', 8: 'tedge_bl', 9: 'tpeak_r', 10: 'tedge_bl', 11: 'tpeak_c', 12: 'tedge_b', 13: 'tedge_bl', 14: 'tpeak_c', 15: 'tedge_b', refs: 'tedge_bl' } : null;
 const SANS = 'Onest', SANS_B = 'Onest SemiBold', POSTER = 'Unbounded';
 const NB = ' ';
 const W = 13.333, L = 0.8, R = W - 0.8, CW = R - L;

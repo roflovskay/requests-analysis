@@ -50,6 +50,7 @@ def converge(fx, fy, n, seed, reach=0.75, width=7):
         org.append((ox, oy)); dirs.append(math.atan2(dy, dx)); lens.append(max(0.1, dist - 0.11))
     return veins(org, dirs, lens, width, seed, depth=2, spread=0.75)
 def compose(name, art_mask, major, glow_xy=None, sage_amt=0.10, seed=1):
+    if os.environ.get('ONLY') and name not in os.environ['ONLY'].split(','): return
     img = np.ones((H, W, 3), np.float32) * INK
     # soft violet light behind the focal area
     if glow_xy:
@@ -101,3 +102,7 @@ compose('vconvC', 0.1 + 0.9*np.clip((np.sqrt(((xx/W-0.5))**2 + ((yy/H-0.55)*0.56
         converge(0.5, 0.55, 8, 61, 0, 3.0), glow_xy=(0.5, 0.56, 0.4), seed=61)
 compose('vedge_bl', 0.05 + 0.75*ramp(0.62, 1.0, 'y'),
         veins([(-0.03, 0.96)], [math.radians(-9)], 0.62, 3, 19, depth=3), glow_xy=(0.62, 0.3, 0.55), sage_amt=0.07, seed=71)
+
+# slide 17: the right half is a photo frame, so the veins go under the text column on the left
+compose('vedge_l', np.clip(0.06 + 0.9*ramp(0.58, 0.98, 'y') + 0.35*(1-ramp(0.0, 0.12, 'x')), 0, 1),
+        veins([(-0.02, 1.01), (-0.02, 0.45)], [math.radians(-24), math.radians(12)], [0.5, 0.3], 3.2, 81, depth=3), glow_xy=(0.25, 0.55, 0.45), sage_amt=0.09, seed=81)
