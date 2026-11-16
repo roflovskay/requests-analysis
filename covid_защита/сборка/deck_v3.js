@@ -56,9 +56,9 @@ function page(bg, n) { const s = slide(bg, n);
 function head3(s, title, finding, hl = []) {
   T(s, title, { x: L, y: 0.85, w: CW, h: 0.6, fontFace: SANS, bold: true, fontSize: 30, color: C.parch });
   let runs = [{ text: finding, options: {} }];
-  hl.forEach(h => { runs = runs.flatMap(r => { if (r.options.highlight || !r.text.includes(h)) return [r]; const [a, ...b] = r.text.split(h);
-    return [{ text: a, options: {} }, { text: h, options: { highlight: C.ultra, color: C.parch } }, { text: b.join(h), options: {} }].filter(x => x.text); }); });
-  T(s, runs, { x: L, y: 1.47, w: CW, h: 0.75, fontFace: SANS_SB, fontSize: 19, color: C.icy, lineSpacingMultiple: 1.08 }); }
+  hl.forEach(h => { runs = runs.flatMap(r => { if (r.options.bold || !r.text.includes(h)) return [r]; const [a, ...b] = r.text.split(h);
+    return [{ text: a, options: {} }, { text: h, options: { bold: true, color: C.icy } }, { text: b.join(h), options: {} }].filter(x => x.text); }); });
+  T(s, runs, { x: L, y: 1.47, w: CW, h: 0.75, fontFace: SANS_SB, fontSize: 19, color: C.parch, lineSpacingMultiple: 1.08 }); }
 const DIMS = { 2: [1912, 802], 3: [1912, 892], 4: [1930, 742], 5: [1912, 772], 6: [1987, 772] };
 // light card: the chart keeps its light background; card colour equals the PNG margin colour
 function card(s, n, x, y, h, pad = 0.16) { const [pw, ph] = DIMS[n]; const w = h * pw / ph;
@@ -66,7 +66,7 @@ function card(s, n, x, y, h, pad = 0.16) { const [pw, ph] = DIMS[n]; const w = h
     shadow: { type: 'outer', blur: 24, offset: 8, angle: 90, color: '000000', opacity: 0.45 } });
   s.addImage({ path: IMG + '/s' + n + '.png', x: x + pad, y: y + pad, w, h, altText: S(n).alt }); return w + 2 * pad; }
 function foot(s, caption, src) {
-  if (caption) T(s, caption, { x: L, y: 6.45, w: CW, h: 0.38, fontSize: 15, color: C.parch });
+  if (caption) T(s, caption, { x: L, y: 6.3, w: CW, h: 0.58, fontSize: 15, color: C.parch });
   T(s, src, { x: L, y: 6.93, w: CW - 1, h: 0.3, fontFace: MONO_R, fontSize: 12, color: C.mutedD, valign: 'bottom' }); }
 
 // 2 — data and cleaning (chart on the right, as the notes say)
@@ -89,9 +89,9 @@ function foot(s, caption, src) {
     T(s, v, { x: x + rw - 1.3, y: y + 0.04, w: 1.3, h: 0.45, fontFace: MONO, fontSize: i ? 18 : 26, color: C.icy, align: 'right' }); });
   foot(s, null, 'Источник: Our World in Data'); }
 
-{ const s = page('w_c3', 4); head3(s, txt(4, 0), txt(4, 1)); card(s, 4, L, 2.35, 3.7); foot(s, txt(4, 3), 'Источник: Our World in Data'); }
-{ const s = page('w_c1', 5); head3(s, txt(5, 0), txt(5, 1)); card(s, 5, L, 2.35, 3.7); foot(s, txt(5, 3), 'Источник: Our World in Data'); }
-{ const s = page('w_c2', 6); head3(s, txt(6, 0), txt(6, 1), ['0.167', 'p = 0.67']); card(s, 6, L, 2.45, 3.6); foot(s, txt(6, 3), 'Источник: Our World in Data'); }
+{ const s = page('w_c3', 4); head3(s, txt(4, 0), txt(4, 1)); card(s, 4, L, 2.35, 3.55); foot(s, txt(4, 3), 'Источник: Our World in Data'); }
+{ const s = page('w_c1', 5); head3(s, txt(5, 0), txt(5, 1)); card(s, 5, L, 2.35, 3.55); foot(s, txt(5, 3), 'Источник: Our World in Data'); }
+{ const s = page('w_c2', 6); head3(s, txt(6, 0), txt(6, 1), ['0.167', 'p = 0.67']); card(s, 6, L, 2.45, 3.45); foot(s, txt(6, 3), 'Источник: Our World in Data'); }
 // 7 — conclusions (dark)
 { const s = slide('w_end', 7);
   T(s, txt(7, 0), { x: L, y: 0.55, w: 4, h: 0.35, fontFace: MONO, fontSize: 12, color: C.icy, charSpacing: 1 });
